@@ -23,7 +23,8 @@ def setup():
     
     GPIO.output(enable, GPIO.HIGH)
     
-def mapNum( value, fromLow, fromHigh, toLow, toHigh):  # map a value from one range to another range
+# map a value from one range to another range
+def mapNum( value, fromLow, fromHigh, toLow, toHigh): 
     return (toHigh-toLow)*(value-fromLow) / (fromHigh-fromLow) + toLow
  
 def motor(ADC):
@@ -33,11 +34,9 @@ def motor(ADC):
     if (value > 0):
         dp1.ChangeDutyCycle(mapNum(abs(value), 0, maxSpeed, 0, 100))
         dp2.ChangeDutyCycle(0)
-    
     elif (value < 0):
         dp1.ChangeDutyCycle(0)
         dp2.ChangeDutyCycle(mapNum(abs(value), 0, maxSpeed, 0, 100))
-    
     else:
         dp1.ChangeDutyCycle(0)
         dp2.ChangeDutyCycle(0)

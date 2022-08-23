@@ -20,9 +20,9 @@ filter_on = False
 filters = ['negative', 'sketch', 'oilpaint','pastel', 'film', 'blur']
 
 def setup():
-    GPIO.setmode(GPIO.BCM)       # use BCM Numbering
-    GPIO.setup(buttons, GPIO.IN)   # set the ledPin to OUTPUT mode
-    GPIO.setup(ledPin, GPIO.OUT)
+    GPIO.setmode(GPIO.BCM)         # use BCM Numbering
+    GPIO.setup(buttons, GPIO.IN)   # set the button to INPUT mode
+    GPIO.setup(ledPin, GPIO.OUT)   # set the ledPin to OUTPUT mod
     GPIO.output(ledPin, GPIO.LOW)
     
     GPIO.add_event_detect(buttons[0], GPIO.RISING, callback=start_recording, bouncetime=200)

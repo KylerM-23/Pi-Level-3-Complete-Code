@@ -9,7 +9,7 @@ latchPin = 13
 clockPin = 15
 
 pins = [dataPin, latchPin, clockPin]
-anodes = [37, 36, 38, 40]
+anodes = [36, 38, 40, 37]
 
 timeSleep= .002
  

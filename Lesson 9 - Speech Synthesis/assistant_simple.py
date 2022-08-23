@@ -10,9 +10,11 @@ class Assistant:
         self.modelID = ""
         predict.set_model_ID(self.modelID)
         
+        #create voice synth & speech detection
         self.synth_speech = SynthVoice()
         self.detect_speech = SpeechDetection()
         
+        #setup an LED
         GPIO.setmode(GPIO.BCM)# use BCM Numbering
         self.ledPin = 21
         GPIO.setup(self.ledPin, GPIO.OUT)
@@ -26,6 +28,9 @@ class Assistant:
         category, confidence = predict.text_classify(text)
         return category
     
+    def say(self, word):
+        self.synth_speech.say(word)
+        
     def loop(self):
         while True:
             command = self.classify_speech()
@@ -34,13 +39,11 @@ class Assistant:
             GPIO.output(self.ledPin, GPIO.HIGH)
             
             command = self.classify_speech()
-            
             if command == 'LISTEN':
-                self.synth_speech.say("Command recieved " + command)
+                self.say("Command recieved " + command)
             else:
-                self.synth_speech.say("Sorry, I didn't get that.")                
+                self.say("Sorry, I didn't get that.")                
             GPIO.output(self.ledPin, GPIO.LOW)
-        
     
     def close(self):
         GPIO.cleanup()

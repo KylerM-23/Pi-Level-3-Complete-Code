@@ -17,7 +17,6 @@ Row = [Row_dataPin, Row_latchPin, Row_clockPin]
 
 timeSleep = .5
 
-
 def setup():
     GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BOARD)
