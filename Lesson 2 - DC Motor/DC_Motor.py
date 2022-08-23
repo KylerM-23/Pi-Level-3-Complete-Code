@@ -10,7 +10,7 @@ motorPins = [direction1, direction2, enable]
 def setup():
     global adc, dp1, dp2
     
-    adc = get_ADC(adc)
+    adc = get_ADC()
     
     GPIO.setmode(GPIO.BOARD)
     GPIO.setup(motorPins, GPIO.OUT)

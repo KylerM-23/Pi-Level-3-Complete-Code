@@ -13,12 +13,8 @@ modules = {
     "Pyaudio Pip Method": "sudo pip3 install pyaudio",
     "Espeak" : "sudo apt install espeak",
     "Pyttsx3": "sudo pip3 install pyttsx3",
-    "Matplotlib Pip Method": "sudo pip3 install matplotlib",
-    "Matplotlib Method 1": "sudo apt install python-matplotlib",
-    "Matplotlib Method 2": "sudo apt install python3-matplotlib",
     "Vosk": "sudo pip3 install vosk",
-    "Sounddevice": "sudo pip3 install sounddevice",
-    "Numpy": "sudo pip3 install numpy"
+    "Sounddevice": "sudo pip3 install sounddevice"
     }
 
 def update():
@@ -29,7 +25,7 @@ def update():
 def audio(i = 0):
     if (i == 2):
         print("Pyaudio failed to import.")
-        failed+=["Libport Audio", "Pyaudio Method 1", "Pyaudio Method 2", "Pyaudio Pip Method"]
+        failed.append("Libport Audio", "Pyaudio Method 1", "Pyaudio Method 2", "Pyaudio Pip Method")
         return
     try:
         import pyaudio
@@ -44,7 +40,7 @@ def audio(i = 0):
 def speech_synth(i = 0):
     if (i == 2):
         print("Pyttsx3 failed to import.")
-        failed+=["Espeak", "Pyttsx3"]
+        failed.append("Espeak", "Pyttsx3")
         return
     try:
         import pyttsx3
@@ -53,32 +49,17 @@ def speech_synth(i = 0):
         os.system("sudo apt install espeak")
         os.system("sudo pip3 install pyttsx3")
         speech_synth(i+1)
-        
-def graph(i = 0):
-    if (i == 2):
-        print("Matplotlib failed to import.")
-        failed+=["Matplotlib Pip Method", "Matplotlib Method 1","Matplotlib Method 2", "Numpy"]
-        return
-    try:
-        import matplotlib
-    except:
-        print("Installing libraries for pyttsx3.")
-        os.system("sudo pip3 install matplotlib")
-        os.system("sudo apt install python-matplotlib")
-        os.system("sudo apt install python3-matplotlib")
-        os.system("sudo pip3 install numpy")
-        graph(i+1)
 
 def speech_rec(i = 0):
     if (i == 2):
-        print("Pyttsx3 failed to import.")
-        failed+=["Vosk", "Sounddevice"]
+        print("Vosk & Sounddevice failed to import.")
+        failed.append("Vosk", "Sounddevice")
         return
     try:
         import vosk
         import sounddevice as sd
     except:
-        print("Installing libraries for pyttsx3.")
+        print("Installing libraries for Vosk & Sounddevice.")
         os.system("sudo pip3 install vosk")
         os.system("sudo pip3 install sounddevice")
         speech_rec(i+1)
@@ -88,7 +69,6 @@ def main():
     print("Module Test")
     audio()
     speech_synth()
-    graph()
     speech_rec()
     if len(failed) > 0:
         print("These modules failed, try running the associated command in the terminal or use the Thonny Package Manager.")
